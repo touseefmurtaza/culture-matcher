@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class MatchesController < ApplicationController
-      before_action :set_match, only: [:show, :destroy]
+      before_action :set_match, only: %i[show destroy]
 
       # GET /api/v1/matches
       def index

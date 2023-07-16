@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class CultureTypesController < ApplicationController
-      before_action :set_culture_type, only: [:show, :update, :destroy]
+      before_action :set_culture_type, only: %i[show update destroy]
 
       # GET /api/v1/culture_types
       def index

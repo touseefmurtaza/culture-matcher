@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class CompaniesController < ApplicationController
-      before_action :set_company, only: [:show, :update, :destroy]
+      before_action :set_company, only: %i[show update destroy]
 
       # GET /api/v1/companies
       def index

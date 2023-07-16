@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class ApplicantsController < ApplicationController
-      before_action :set_applicant, only: [:show, :update, :destroy]
+      before_action :set_applicant, only: %i[show update destroy]
 
       # GET /api/v1/applicants
       def index

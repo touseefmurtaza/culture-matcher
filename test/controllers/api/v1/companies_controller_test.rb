@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module Api
@@ -19,7 +21,8 @@ module Api
 
       test 'should create company' do
         assert_difference -> { Company.count(:id) }, +1 do
-          post api_v1_companies_url, params: { company: { name: 'New Company', culture_type_id: create(:culture_type).id } }
+          post api_v1_companies_url,
+               params: { company: { name: 'New Company', culture_type_id: create(:culture_type).id } }
         end
 
         assert_response :created

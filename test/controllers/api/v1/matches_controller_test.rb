@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # test/controllers/api/v1/matches_controller_test.rb
 require 'test_helper'
 
@@ -20,7 +22,8 @@ module Api
 
       test 'should create match' do
         assert_difference -> { Match.count(:id) }, +1 do
-          post api_v1_matches_url, params: { match: { applicant_id: create(:applicant).id, company_id: create(:company).id } }
+          post api_v1_matches_url,
+               params: { match: { applicant_id: create(:applicant).id, company_id: create(:company).id } }
         end
 
         assert_response :created
@@ -32,7 +35,7 @@ module Api
         end
 
         assert_response :unprocessable_entity
-        assert_includes response.parsed_body['applicant'], "must exist"
+        assert_includes response.parsed_body['applicant'], 'must exist'
       end
 
       test 'should destroy match' do

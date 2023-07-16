@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module Api
@@ -19,7 +21,9 @@ module Api
 
       test 'should create applicant' do
         assert_difference -> { Applicant.count(:id) }, +1 do
-          post api_v1_applicants_url, params: { applicant: { first_name: 'John', last_name: 'Doe', culture_type_id: create(:culture_type).id } }
+          post api_v1_applicants_url,
+               params: { applicant: { first_name: 'John', last_name: 'Doe',
+                                      culture_type_id: create(:culture_type).id } }
         end
 
         assert_response :created
