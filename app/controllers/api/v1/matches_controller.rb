@@ -18,12 +18,14 @@ module Api
 
       # POST /api/v1/matches
       def create
-        @match = Match.new(match_params)
+        ActiveRecord::Base.transaction do
+          @match = Match.new(match_params)
 
-        if @match.save
-          render json: @match, status: :created
-        else
-          render json: @match.errors, status: :unprocessable_entity
+          if @match.save
+            render json: @match, status: :created
+          else
+            render json: @match.errors, status: :unprocessable_entity
+          end
         end
       end
 

@@ -29,13 +29,22 @@ module Api
         assert_response :created
       end
 
-      test 'should not create invalid match' do
+      test 'should not create match when applicant_id is nil' do
         assert_no_difference -> { Match.count(:id) } do
           post api_v1_matches_url, params: { match: { applicant_id: nil, company_id: @match.company_id } }
         end
 
         assert_response :unprocessable_entity
         assert_includes response.parsed_body['applicant'], 'must exist'
+      end
+
+      test 'should not create match when company_id is nil' do
+        assert_no_difference -> { Match.count(:id) } do
+          post api_v1_matches_url, params: { match: { applicant_id: create(:applicant).id, company_id: nil } }
+        end
+
+        assert_response :unprocessable_entity
+        assert_includes response.parsed_body['company'], 'must exist'
       end
 
       test 'should destroy match' do
