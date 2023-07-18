@@ -7,13 +7,13 @@ module Api
 
       # GET /api/v1/companies
       def index
-        @companies = Company.all
+        @companies = Company.paginate(page: page, per_page: per_page)
         render json: @companies
       end
 
       # GET /api/v1/companies/1
       def show
-        render json: @company
+        render json: @company, include: :matched_applicants
       end
 
       # POST /api/v1/companies

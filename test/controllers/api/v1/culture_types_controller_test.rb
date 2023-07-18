@@ -14,6 +14,21 @@ module Api
         assert_response :success
       end
 
+      test 'should get index page by page' do
+        create_list(:culture_type, 5)
+        per_page = 4
+
+        # 1st request
+        get api_v1_culture_types_url(page: 1, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, per_page
+
+        # 2nd request
+        get api_v1_culture_types_url(page: 2, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, CultureType.count - per_page
+      end
+
       test 'should show culture_type' do
         get api_v1_culture_type_url(@culture_type)
         assert_response :success

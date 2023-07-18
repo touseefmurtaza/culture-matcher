@@ -7,7 +7,7 @@ module Api
 
       # GET /api/v1/matches
       def index
-        @matches = Match.all
+        @matches = Match.paginate(page: page, per_page: per_page)
         render json: @matches
       end
 

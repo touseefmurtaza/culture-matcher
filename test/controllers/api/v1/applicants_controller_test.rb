@@ -6,12 +6,27 @@ module Api
   module V1
     class ApplicantsControllerTest < ActionDispatch::IntegrationTest
       setup do
-        @applicant = FactoryBot.create(:applicant)
+        @applicant = create(:applicant)
       end
 
       test 'should get index' do
         get api_v1_applicants_url
         assert_response :success
+      end
+
+      test 'should get index page by page' do
+        create_list(:applicant, 5)
+        per_page = 4
+
+        # 1st request
+        get api_v1_applicants_url(page: 1, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, per_page
+
+        # 2nd request
+        get api_v1_applicants_url(page: 2, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, Applicant.count - per_page
       end
 
       test 'should show applicant' do

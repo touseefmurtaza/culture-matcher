@@ -7,7 +7,7 @@ module Api
 
       # GET /api/v1/culture_types
       def index
-        @culture_types = CultureType.all
+        @culture_types = CultureType.paginate(page: page, per_page: per_page)
         render json: @culture_types
       end
 

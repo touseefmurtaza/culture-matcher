@@ -15,6 +15,21 @@ module Api
         assert_response :success
       end
 
+      test 'should get index page by page' do
+        create_list(:match, 5)
+        per_page = 4
+
+        # 1st request
+        get api_v1_matches_url(page: 1, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, per_page
+
+        # 2nd request
+        get api_v1_matches_url(page: 2, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, Match.count - per_page
+      end
+
       test 'should show match' do
         get api_v1_match_url(@match)
         assert_response :success

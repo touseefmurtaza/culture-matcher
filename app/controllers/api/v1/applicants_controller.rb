@@ -7,7 +7,7 @@ module Api
 
       # GET /api/v1/applicants
       def index
-        @applicants = Applicant.all
+        @applicants = Applicant.paginate(page: page, per_page: per_page)
         render json: @applicants
       end
 

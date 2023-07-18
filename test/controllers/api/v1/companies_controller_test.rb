@@ -14,8 +14,34 @@ module Api
         assert_response :success
       end
 
+      test 'should get index page by page' do
+        create_list(:company, 5)
+        per_page = 4
+
+        # 1st request
+        get api_v1_companies_url(page: 1, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, per_page
+
+        # 2nd request
+        get api_v1_companies_url(page: 2, per_page: per_page)
+        assert_response :success
+        assert_equal response.parsed_body.count, Company.count - per_page
+      end
+
       test 'should show company' do
         get api_v1_company_url(@company)
+        assert_empty response.parsed_body['matched_applicants']
+        assert_response :success
+      end
+
+      test 'should show company with matched_applicants' do
+        create(:match, company: @company)
+        get api_v1_company_url(@company)
+        matched_applicants = response.parsed_body['matched_applicants']
+
+        assert_not_empty matched_applicants
+        assert_kind_of Array, matched_applicants
         assert_response :success
       end
 
