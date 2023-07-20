@@ -14,6 +14,7 @@ class ApplicantTest < ActiveSupport::TestCase
 
   test 'culture type should be present' do
     @applicant.culture_type = nil
-    assert_not @applicant.valid?
+    assert @applicant.invalid?
+    assert_equal @applicant.errors.full_messages.to_sentence, "Culture type must exist and Culture type can't be blank"
   end
 end

@@ -14,6 +14,7 @@ class CompanyTest < ActiveSupport::TestCase
 
   test 'culture type should be present' do
     @company.culture_type = nil
-    assert_not @company.valid?
+    assert @company.invalid?
+    assert_equal @company.errors.full_messages.to_sentence, "Culture type must exist and Culture type can't be blank"
   end
 end

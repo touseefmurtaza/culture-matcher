@@ -13,6 +13,7 @@ class CultureTypeTest < ActiveSupport::TestCase
 
   test 'name should be present' do
     @culture_type.name = ''
-    assert_not @culture_type.valid?
+    assert @culture_type.invalid?
+    assert_equal @culture_type.errors.full_messages.to_sentence, "Name can't be blank"
   end
 end
