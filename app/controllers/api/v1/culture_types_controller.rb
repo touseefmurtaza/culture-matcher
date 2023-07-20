@@ -5,18 +5,15 @@ module Api
     class CultureTypesController < ApplicationController
       before_action :set_culture_type, only: %i[show update destroy]
 
-      # GET /api/v1/culture_types
       def index
         @culture_types = CultureType.paginate(page: page, per_page: per_page)
         render json: @culture_types
       end
 
-      # GET /api/v1/culture_types/1
       def show
         render json: @culture_type
       end
 
-      # POST /api/v1/culture_types
       def create
         @culture_type = CultureType.new(culture_type_params)
 
@@ -27,7 +24,6 @@ module Api
         end
       end
 
-      # PATCH/PUT /api/v1/culture_types/1
       def update
         if @culture_type.update(culture_type_params)
           render json: @culture_type
@@ -36,7 +32,6 @@ module Api
         end
       end
 
-      # DELETE /api/v1/culture_types/1
       def destroy
         @culture_type.destroy
       end

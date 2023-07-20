@@ -5,18 +5,15 @@ module Api
     class CompaniesController < ApplicationController
       before_action :set_company, only: %i[show update destroy]
 
-      # GET /api/v1/companies
       def index
         @companies = Company.paginate(page: page, per_page: per_page)
         render json: @companies
       end
 
-      # GET /api/v1/companies/1
       def show
         render json: @company, include: :matched_applicants
       end
 
-      # POST /api/v1/companies
       def create
         @company = Company.new(company_params)
 
@@ -27,7 +24,6 @@ module Api
         end
       end
 
-      # PATCH/PUT /api/v1/companies/1
       def update
         if @company.update(company_params)
           render json: @company
@@ -36,7 +32,6 @@ module Api
         end
       end
 
-      # DELETE /api/v1/companies/1
       def destroy
         @company.destroy
       end

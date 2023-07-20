@@ -5,18 +5,15 @@ module Api
     class ApplicantsController < ApplicationController
       before_action :set_applicant, only: %i[show update destroy]
 
-      # GET /api/v1/applicants
       def index
         @applicants = Applicant.paginate(page: page, per_page: per_page)
         render json: @applicants
       end
 
-      # GET /api/v1/applicants/1
       def show
         render json: @applicant
       end
 
-      # POST /api/v1/applicants
       def create
         @applicant = Applicant.new(applicant_params)
 
@@ -27,7 +24,6 @@ module Api
         end
       end
 
-      # PATCH/PUT /api/v1/applicants/1
       def update
         if @applicant.update(applicant_params)
           render json: @applicant
@@ -36,7 +32,6 @@ module Api
         end
       end
 
-      # DELETE /api/v1/applicants/1
       def destroy
         @applicant.destroy
       end
