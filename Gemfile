@@ -11,6 +11,8 @@ gem 'puma', '~> 5.0'
 gem 'rails', '~> 7.0.6'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'rswag-api'
+gem 'rswag-ui'
 gem 'will_paginate'
 
 group :development, :test do

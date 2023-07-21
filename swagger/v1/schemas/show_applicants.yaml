@@ -1,0 +1,26 @@
+tags:
+  - Applicants
+summary: Endpoint to get the applicant
+operationId: ShowApplicants
+parameters:
+  - description: The id of the applicant
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      default: 1
+
+responses:
+  "200":
+    description: Show a Applicant
+    content:
+      application/json:
+        schema:
+          $ref: applicant.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml

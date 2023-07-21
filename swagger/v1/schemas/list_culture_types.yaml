@@ -1,0 +1,6 @@
+properties:
+  culture_types:
+    type: array
+    items:
+      $ref: culture_type.yaml
+

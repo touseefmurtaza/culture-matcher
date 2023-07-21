@@ -1,0 +1,26 @@
+tags:
+  - Culture Types
+summary: Endpoint to get the culture type
+operationId: ShowCultureTypes
+parameters:
+  - description: The id of the culture type
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      default: 1
+
+responses:
+  "200":
+    description: Show a CultureType
+    content:
+      application/json:
+        schema:
+          $ref: culture_type.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml

@@ -1,0 +1,7 @@
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: "Best culture fit"

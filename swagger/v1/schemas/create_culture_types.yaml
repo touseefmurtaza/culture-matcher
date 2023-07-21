@@ -1,0 +1,33 @@
+tags:
+  - Culture Types
+summary: Endpoint to create culture type
+operationId: CreateCultureTypes
+parameters: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        description: Culture type attributes for creation
+        example:
+          culture_type:
+            name: "An amazing culture"
+        properties:
+          culture_type:
+            properties:
+              name:
+                description: Culture name
+                type: string
+
+responses:
+  "201":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: culture_type.yaml
+  "422":
+    description: Unprocessable Entity
+    content:
+      application/json:
+        schema:
+          $ref: unprocessable_entity.yaml

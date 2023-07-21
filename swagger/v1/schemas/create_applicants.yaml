@@ -1,0 +1,41 @@
+tags:
+  - Applicants
+summary: Endpoint to create applicants
+operationId: CreateApplicants
+parameters: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        description: Applicants attributes for creation
+        example:
+          applicant:
+            first_name: "John"
+            last_name: "Doe"
+            culture_type_id: 1
+        properties:
+          applicant:
+            properties:
+              first_name:
+                description: Applicant first name
+                type: string
+              last_name:
+                description: Applicant last name
+                type: string
+              culture_type_id:
+                description: Culture type ID
+                type: integer
+
+responses:
+  "201":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: applicant.yaml
+  "422":
+    description: Unprocessable Entity
+    content:
+      application/json:
+        schema:
+          $ref: unprocessable_entity.yaml

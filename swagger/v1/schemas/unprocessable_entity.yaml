@@ -1,0 +1,13 @@
+description: Request could not be processed
+example:
+  code: unprocessable_entity
+  error: {}
+properties:
+  code:
+    description: Error code
+    type: string
+  error:
+    description: Error objects
+    type: object
+title: UnprocessableEntity
+type: object

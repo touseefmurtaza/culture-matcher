@@ -1,0 +1,13 @@
+properties:
+  id:
+    type: integer
+    example: 1
+  first_name:
+    type: string
+    example: "John"
+  last_name:
+    type: string
+    example: "Doe"
+  culture_type_id:
+    type: integer
+    example: 1
