@@ -7,33 +7,33 @@ module Api
 
       def index
         @applicants = Applicant.paginate(page: page, per_page: per_page)
-        render json: @applicants
+        render_applicant(@applicants)
       end
 
       def show
-        render json: @applicant
+        render_applicant(@applicant)
       end
 
       def create
         @applicant = Applicant.new(applicant_params)
 
         if @applicant.save
-          render json: @applicant, status: :created
+          render_applicant(@applicant, status: :created)
         else
-          render json: @applicant.errors, status: :unprocessable_entity
+          render_exception(@applicant.errors)
         end
       end
 
       def update
         if @applicant.update(applicant_params)
-          render json: @applicant
+          render_applicant(@applicant)
         else
-          render json: @applicant.errors, status: :unprocessable_entity
+          render_exception(@applicant.errors)
         end
       end
 
       def destroy
-        @applicant.destroy
+        render_exception(@applicant.errors) unless @applicant.destroy
       end
 
       private
@@ -44,6 +44,11 @@ module Api
 
       def applicant_params
         params.require(:applicant).permit(:first_name, :last_name, :culture_type_id)
+      end
+
+      def render_applicant(culture_type, status: :ok)
+        render json: culture_type,
+               status: status
       end
     end
   end
