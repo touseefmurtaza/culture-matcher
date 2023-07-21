@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_113138) do
   create_table "applicants", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.bigint "culture_type_id", null: false
+    t.bigint "culture_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["culture_type_id"], name: "index_applicants_on_culture_type_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_113138) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.bigint "culture_type_id", null: false
+    t.bigint "culture_type_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["culture_type_id"], name: "index_companies_on_culture_type_id"
