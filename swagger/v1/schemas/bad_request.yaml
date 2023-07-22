@@ -1,0 +1,12 @@
+description: Bad request.
+example:
+  code: bad_request
+  error: "Bad request"
+properties:
+  code:
+    description: Error code
+    type: string
+  error:
+    description: Error message
+    type: string
+title: BadRequest

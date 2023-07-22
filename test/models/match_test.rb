@@ -12,4 +12,14 @@ class MatchTest < ActiveSupport::TestCase
   test 'should be valid' do
     assert @match.valid?
   end
+
+  test 'should be invalid when applicant_id is nil' do
+    @match.applicant_id = nil
+    assert @match.invalid?
+  end
+
+  test 'should be invalid when company_id is nil' do
+    @match.company_id = nil
+    assert @match.invalid?
+  end
 end

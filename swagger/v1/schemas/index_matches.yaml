@@ -1,0 +1,27 @@
+tags:
+  - Matches
+summary: Endpoint to list paginated matches
+operationId: IndexMatches
+parameters:
+  - description: Paginated page number
+    in: query
+    name: page
+    required: false
+    schema:
+      type: integer
+      default: 1
+  - description: Paginated attribute per page
+    in: query
+    name: per_page
+    required: false
+    schema:
+      type: integer
+      default: 10
+
+responses:
+  "200":
+    description: List of Matches
+    content:
+      application/json:
+        schema:
+          $ref: list_matches.yaml

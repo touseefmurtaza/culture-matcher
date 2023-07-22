@@ -1,0 +1,43 @@
+tags:
+  - Matches
+summary: Endpoint to create matches
+operationId: CreateMatches
+parameters: []
+requestBody:
+  content:
+    application/json:
+      schema:
+        description: Matches attributes for creation
+        example:
+          match:
+            applicant_id: 1
+            company_id: 1
+        properties:
+          match:
+            properties:
+              applicant_id:
+                description: Appicant ID
+                type: integer
+              company_id:
+                description: Company ID
+                type: integer
+
+responses:
+  "201":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: match.yaml
+  "422":
+    description: Unprocessable Entity
+    content:
+      application/json:
+        schema:
+          $ref: unprocessable_entity.yaml
+  "400":
+    description: Bad Request
+    content:
+      application/json:
+        schema:
+          $ref: bad_request.yaml

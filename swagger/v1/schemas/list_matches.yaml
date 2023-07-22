@@ -1,0 +1,5 @@
+properties:
+  companies:
+    type: array
+    items:
+      $ref: match.yaml

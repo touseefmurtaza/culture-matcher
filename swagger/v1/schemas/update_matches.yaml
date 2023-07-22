@@ -1,0 +1,50 @@
+tags:
+  - Matches
+summary: Endpoint to update match
+operationId: UpdateMatches
+parameters:
+  - description: Match ID
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  content:
+    application/json:
+      schema:
+        description: Match attributes for update
+        example:
+          match:
+            applicant_id: 1
+            company_id: 1
+        properties:
+          match:
+            properties:
+              applicant_id:
+                description: Applicant ID
+                type: integer
+              company_id:
+                description: Company ID
+                type: integer
+
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: match.yaml
+  "422":
+    description: Unprocessable Entity
+    content:
+      application/json:
+        schema:
+          $ref: unprocessable_entity.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml

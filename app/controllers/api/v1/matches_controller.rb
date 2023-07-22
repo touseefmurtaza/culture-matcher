@@ -7,11 +7,11 @@ module Api
 
       def index
         @matches = Match.paginate(page: page, per_page: per_page)
-        render json: @matches
+        render_match(@matches)
       end
 
       def show
-        render json: @match
+        render_match(@match)
       end
 
       def create
@@ -19,15 +19,15 @@ module Api
           @match = Match.new(match_params)
 
           if @match.save
-            render json: @match, status: :created
+            render_match(@match, status: :created)
           else
-            render json: @match.errors, status: :unprocessable_entity
+            render_exception(@match.errors)
           end
         end
       end
 
       def destroy
-        @match.destroy
+        render_exception(@match.errors) unless @match.destroy
       end
 
       private
@@ -38,6 +38,11 @@ module Api
 
       def match_params
         params.require(:match).permit(:applicant_id, :company_id)
+      end
+
+      def render_match(match, status: :ok)
+        render json: match,
+               status: status
       end
     end
   end

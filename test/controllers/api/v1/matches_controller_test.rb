@@ -50,7 +50,7 @@ module Api
         end
 
         assert_response :unprocessable_entity
-        assert_includes response.parsed_body['applicant'], 'must exist'
+        assert_includes response.parsed_body['error']['applicant'], 'must exist'
       end
 
       test 'should not create match when company_id is nil' do
@@ -59,7 +59,7 @@ module Api
         end
 
         assert_response :unprocessable_entity
-        assert_includes response.parsed_body['company'], 'must exist'
+        assert_includes response.parsed_body['error']['company'], 'must exist'
       end
 
       test 'should destroy match' do

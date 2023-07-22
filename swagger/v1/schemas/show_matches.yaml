@@ -1,0 +1,26 @@
+tags:
+  - Matches
+summary: Endpoint to get the match
+operationId: ShowMatches
+parameters:
+  - description: The id of the match
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      default: 1
+
+responses:
+  "200":
+    description: Show a Company
+    content:
+      application/json:
+        schema:
+          $ref: match.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml
