@@ -1,0 +1,10 @@
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: "My best ever company"
+  culture_type_id:
+    type: integer
+    example: 1

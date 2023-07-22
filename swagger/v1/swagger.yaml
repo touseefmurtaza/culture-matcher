@@ -32,3 +32,27 @@ paths:
       $ref: ./schemas/update_applicants.yaml
     delete:
       $ref: ./schemas/destroy_applicants.yaml
+  /api/v1/companies:
+    get:
+      $ref: ./schemas/index_companies.yaml
+    post:
+      $ref: ./schemas/create_companies.yaml
+  /api/v1/companies/{id}:
+    get:
+      $ref: ./schemas/show_companies.yaml
+    put:
+      $ref: ./schemas/update_companies.yaml
+    delete:
+      $ref: ./schemas/destroy_companies.yaml
+  /api/v1/matches:
+    get:
+      $ref: ./schemas/index_matches.yaml
+    post:
+      $ref: ./schemas/create_matches.yaml
+  /api/v1/matches/{id}:
+    get:
+      $ref: ./schemas/show_matches.yaml
+    put:
+      $ref: ./schemas/update_matches.yaml
+    delete:
+      $ref: ./schemas/destroy_matches.yaml

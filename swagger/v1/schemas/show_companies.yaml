@@ -1,0 +1,26 @@
+tags:
+  - Companies
+summary: Endpoint to get the company
+operationId: ShowCompanies
+parameters:
+  - description: The id of the company
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      default: 1
+
+responses:
+  "200":
+    description: Show a Company
+    content:
+      application/json:
+        schema:
+          $ref: company.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml

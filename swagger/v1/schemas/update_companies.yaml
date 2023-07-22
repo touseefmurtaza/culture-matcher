@@ -1,0 +1,54 @@
+tags:
+  - Companies
+summary: Endpoint to update company
+operationId: UpdateCompanies
+parameters:
+  - description: Company ID
+    in: path
+    name: id
+    required: true
+    schema:
+      type: integer
+      example: 1
+requestBody:
+  content:
+    application/json:
+      schema:
+        description: Company attributes for update
+        example:
+          company:
+            first_name: "John Updated"
+            last_name: "Doe Updated"
+            culture_type_id: 1
+        properties:
+          company:
+            properties:
+              first_name:
+                description: Company first name
+                type: string
+              last_name:
+                description: Company last name
+                type: string
+              culture_type_id:
+                description: Culture type ID
+                type: integer
+
+responses:
+  "200":
+    description: Success
+    content:
+      application/json:
+        schema:
+          $ref: company.yaml
+  "422":
+    description: Unprocessable Entity
+    content:
+      application/json:
+        schema:
+          $ref: unprocessable_entity.yaml
+  "404":
+    description: Not found
+    content:
+      application/json:
+        schema:
+          $ref: not_found.yaml

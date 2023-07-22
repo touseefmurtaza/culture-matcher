@@ -7,7 +7,7 @@ module Api
 
       def index
         @companies = Company.paginate(page: page, per_page: per_page)
-        render json: @companies
+        render_company(@companies)
       end
 
       def show
@@ -18,22 +18,22 @@ module Api
         @company = Company.new(company_params)
 
         if @company.save
-          render json: @company, status: :created
+          render_company(@company, status: :created)
         else
-          render json: @company.errors, status: :unprocessable_entity
+          render_exception(@company.errors)
         end
       end
 
       def update
         if @company.update(company_params)
-          render json: @company
+          render_company(@company)
         else
-          render json: @company.errors, status: :unprocessable_entity
+          render_exception(@company.errors)
         end
       end
 
       def destroy
-        @company.destroy
+        render_exception(@company.errors) unless @company.destroy
       end
 
       private
@@ -44,6 +44,11 @@ module Api
 
       def company_params
         params.require(:company).permit(:name, :culture_type_id)
+      end
+
+      def render_company(company, status: :ok)
+        render json: company,
+               status: status
       end
     end
   end

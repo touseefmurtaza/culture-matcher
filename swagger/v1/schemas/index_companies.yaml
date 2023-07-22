@@ -1,0 +1,27 @@
+tags:
+  - Companies
+summary: Endpoint to list paginated companies
+operationId: IndexCompanies
+parameters:
+  - description: Paginated page number
+    in: query
+    name: page
+    required: false
+    schema:
+      type: integer
+      default: 1
+  - description: Paginated attribute per page
+    in: query
+    name: per_page
+    required: false
+    schema:
+      type: integer
+      default: 10
+
+responses:
+  "200":
+    description: List of Companies
+    content:
+      application/json:
+        schema:
+          $ref: list_companies.yaml
