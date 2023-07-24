@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: <%= Rails.application.credentials.postgres[:database] %>
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /data/postgres
+    ports: 
+      - 5435:5432
+    volumes:
+      - postgres:/data/postgres
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+
+volumes:
+  postgres:

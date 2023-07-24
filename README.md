@@ -10,6 +10,7 @@ The Empion Culture Matcher API is a backend application that automates headhunti
   - [Running the API](#running-the-api)
   - [API Documentation](#api-documentation)
   - [Running Tests](#running-tests)
+- [Docker](#docker)
 - [Available Endpoints](#available-endpoints)
 
 ## Getting Started
@@ -47,10 +48,28 @@ Before getting started, make sure you have the following software installed on y
 
 ### Running the API
 
+#### Without Docker
+
+Update host in `config/database.yml` to:
+
+```bash
+localhost
+```
+
 Start the Rails server:
 
 ```bash
 rails s
+```
+
+The API will be accessible at `http://localhost:3000`.
+
+#### With Docker
+
+1. Build and run the Docker containers:
+
+```bash
+docker-compose up --build
 ```
 
 The API will be accessible at `http://localhost:3000`.
@@ -65,6 +84,52 @@ To run the test suite:
 
 ```bash
 rails test
+```
+
+## Docker
+
+The Empion Culture Matcher API can also be run inside Docker containers. The necessary configurations for Docker are provided in the `Dockerfile` and `docker-compose.yml` files.
+
+### Prerequisites
+
+- Docker (recommended version: 20.10 or higher)
+
+### Installation with Docker
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:touseefmurtaza/culture-matcher-api.git
+   cd culture-matcher-api
+   ```
+
+2. Build and run the Docker containers:
+
+```bash
+docker-compose up --build
+```
+
+3. Run tests in the Docker containers:
+
+```bash
+docker-compose run app rails test
+```
+
+The API will be accessible at `http://localhost:3000`.
+
+### Accessing the Rails Console
+
+To access the Rails console within the Docker container, open a terminal and run the following command:
+
+```bash
+docker exec -it empion-culture-matcher-api-app-1 bash
+```
+
+Then, inside the container, run the following commands to set up the database:
+
+```bash
+rails db:create
+rails db:migrate
 ```
 
 ## Available Endpoints
