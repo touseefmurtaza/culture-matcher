@@ -116,7 +116,7 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    nio4r (2.5.9)
+    nio4r (2.7.0)
     nokogiri (1.15.3)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -131,7 +131,7 @@ GEM
     pry-byebug (3.10.1)
       byebug (~> 11.0)
       pry (>= 0.13, < 0.15)
-    puma (5.6.6)
+    puma (5.6.8)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.7)
@@ -214,7 +214,7 @@ DEPENDENCIES
   factory_bot_rails
   pg (~> 1.1)
   pry-byebug
-  puma (~> 5.0)
+  puma (~> 5.6)
   rails (~> 7.0.6)
   rswag-api
   rswag-ui
